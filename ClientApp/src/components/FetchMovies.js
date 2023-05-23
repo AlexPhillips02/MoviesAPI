@@ -12,24 +12,26 @@ export class FetchMovies extends Component {
     this.populateMovieData();
   }
 
-  static renderMoviesTable(movies) {
+  static renderMoviesTable(movie) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
             <th>Name</th>
             <th>Release Date</th>
-            <th>Rating</th>
+            <th>Director</th>
+            <th>Runtime</th>
+            <th>Box Office</th>
           </tr>
         </thead>
         <tbody>
-          {movies.map(movie =>
-            <tr key={movie.name}>
-              <td>{movie.name}</td>
-              <td>{movie.releaseDate}</td>
-              <td>{movie.rating}</td>
-            </tr>
-          )}
+          <tr key={movie.title}>
+            <td>{movie.title}</td>
+            <td>{movie.released}</td>
+            <td>{movie.director}</td>
+            <td>{movie.runtime}</td>
+            <td>{movie.boxOffice}</td>
+          </tr>
         </tbody>
       </table>
     );

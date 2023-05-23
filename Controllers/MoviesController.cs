@@ -11,11 +11,13 @@ public class MoviesController : ControllerBase
     public MoviesController(ILogger<MoviesController> logger)
     {
         _logger = logger;
+        APIClient.IntitaliseClient();
     }
 
     [HttpGet]
-    public IEnumerable<Movies> Get()
+    public async Task<Movie> GetAsync()
     {
+        /*
         return Enumerable.Range(1, 5).Select(index => new Movies
         {
             Name = ("Movie " + index),
@@ -23,5 +25,10 @@ public class MoviesController : ControllerBase
             Rating = Random.Shared.Next(0, 100)
         })
         .ToArray();
+
+        */
+
+        Movie? movie = await MovieProcessor.LoadMovie("Spiderman+2");
+        return movie;
     }
 }

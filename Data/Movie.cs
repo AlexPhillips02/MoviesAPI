@@ -10,4 +10,9 @@ public class Movie
     public string? Poster { get; set; }
     public string? imdbRating { get; set; }
     public string? BoxOffice { get; set; }
+
+    public static implicit operator Task<object>(Movie v)
+    {
+        throw new NotImplementedException();
+    }
 }
