@@ -10,10 +10,14 @@ public class MovieProcessor
     {
         string url = "https://www.omdbapi.com/?apikey=1dfc3c06";
 
-        if (title != "")
+        Console.WriteLine("Title: " + title);
+
+        if (title.Equals("undefined"))
         {
-            url += "&t=" + title;
+            title = "spiderman+2";
         }
+
+        url += "&t=" + title;
 
         //Open new request using api client and wait for response
         //Within using will automatically closed

@@ -6,10 +6,16 @@ export class FetchMovies extends Component {
   constructor(props) {
     super(props);
     this.state = { movies: [], loading: true };
+    this.onSubmit = this.onSubmit.bind(this);
+    this.populateMovieData("Spiderman 2");
   }
 
-  componentDidMount() {
-    this.populateMovieData();
+  onSubmit(event) {
+    event.preventDefault();
+    this.state = { movies: [], loading: true };
+    var title = this.title.value;
+    console.log(title);
+    this.populateMovieData(title);
   }
 
   static renderMoviesTable(movie) {
@@ -45,14 +51,23 @@ export class FetchMovies extends Component {
     return (
       <div>
         <h1 id="tabelLabel" >Movies</h1>
+        <form>
+          <label>
+            Movie Title:
+            <input type="text" name="title" ref={(c) => this.title = c}/>
+          </label>
+            <input type="submit" value="Submit" onClick={this.onSubmit}/>
+        </form>
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
     );
   }
 
-  async populateMovieData() {
-    const response = await fetch('movies');
+  async populateMovieData(title) {
+    console.log("2nd: " + title);
+    const response = await fetch('movies/?title={' + title + '}');
+    
     const data = await response.json();
     this.setState({ movies: data, loading: false });
   }
