@@ -4,20 +4,20 @@ using System.Text.Json.Serialization;
 
 namespace reactnet;
 
+public class SearchResults
+{
+    public List<Movie>? Search { get; set; }
+}
+
 public class MovieProcessor
 {
-    public static async Task<Movie> LoadMovie(string title)
+    public static async Task<Movie[]> LoadMovie(string title)
     {
         string url = "https://www.omdbapi.com/?apikey=1dfc3c06";
 
-        Console.WriteLine("Title: " + title);
+        url += "&s=" + title;
 
-        if (title.Equals("undefined"))
-        {
-            title = "spiderman+2";
-        }
-
-        url += "&t=" + title;
+        Console.WriteLine(url);
 
         //Open new request using api client and wait for response
         //Within using will automatically closed
@@ -25,12 +25,18 @@ public class MovieProcessor
         {
             if (response.IsSuccessStatusCode)
             {
-                string data = await response.Content.ReadAsStringAsync();
+                string json = await response.Content.ReadAsStringAsync();
                 //use JavaScriptSerializer from System.Web.Script.Serialization
                 //deserialize to your class
-                Movie? movie = JsonSerializer.Deserialize<Movie>(data);
+                //Console.WriteLine(data);
+                SearchResults? results = JsonSerializer.Deserialize<SearchResults>(json);
 
-                return movie;
+                Console.WriteLine("Results: " + results?.Search);
+                Movie[]? movies = results?.Search?.ToArray<Movie>();
+                Console.WriteLine("Mvoies : " + movies);
+                // Assign other properties of Movie as needed
+
+                return movies;
             }
             else
             {

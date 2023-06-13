@@ -15,7 +15,7 @@ public class MoviesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<Movie> GetAsync(string title)
+    public async Task<Movie[]> GetAsync(string title)
     {
         /*
         return Enumerable.Range(1, 5).Select(index => new Movies
@@ -28,9 +28,9 @@ public class MoviesController : ControllerBase
 
         */
 
-        Console.WriteLine("Before Title: " + title);
+        Movie[]? movie = await MovieProcessor.LoadMovie(title);
 
-        Movie? movie = await MovieProcessor.LoadMovie(title);
+        Console.WriteLine("Movie: " + movie);
         return movie;
     }
 }
