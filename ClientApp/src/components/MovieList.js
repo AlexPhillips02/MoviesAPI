@@ -1,4 +1,6 @@
 import React from "react";
+import MovieCard from './MovieCard';
+import './MovieList.css'
 
 const MovieList = (props) => {
     // Sort movies by name
@@ -9,11 +11,9 @@ const MovieList = (props) => {
       });
 
     return (
-        <div class="row">
-            {sortedMovies.map((movie, index) => 
-                <div class="column">
-                    <img src={movie.poster} alt="poster" />
-                </div>
+        <div className="movies">{
+            sortedMovies.filter(v => v.poster !== null).map((movie, index) => 
+                <MovieCard key={index} movie={movie}/>
             )}
         </div>
     );

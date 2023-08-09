@@ -30,10 +30,7 @@ public class MovieProcessor
                 //deserialize to your class
                 //Console.WriteLine(data);
                 SearchResults? results = JsonSerializer.Deserialize<SearchResults>(json);
-
-                Console.WriteLine("Results: " + results?.Search);
                 Movie[]? movies = results?.Search?.ToArray<Movie>();
-                Console.WriteLine("Mvoies : " + movies);
                 // Assign other properties of Movie as needed
 
                 return movies;

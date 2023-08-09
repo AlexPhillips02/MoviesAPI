@@ -29,8 +29,6 @@ public class MoviesController : ControllerBase
         */
 
         Movie[]? movie = await MovieProcessor.LoadMovie(title);
-
-        Console.WriteLine("Movie: " + movie);
         return movie;
     }
 }

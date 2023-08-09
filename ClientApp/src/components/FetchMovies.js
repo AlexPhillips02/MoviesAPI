@@ -1,23 +1,28 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import MovieList from './MovieList.js';
-import './FetchMovies.css'
 
-const FetchMovies = () => {
+const FetchMovies = ({title}) => {
   const [movies, setMovies] = useState([]);
+  
+  const getMovieRequest = async (movieTitle) => {
+    let data;
 
-  const getMoiveRequest = async (title) =>
-  {
-    title = "Toy"
-    const response = await fetch('movies/?title={' + title + '}');
-    const data = await response.json();
-
-    setMovies(data)
+    try {
+      const response = await fetch(`/movies/?title=${movieTitle}`);
+      data = await response.json();
+      setMovies(data);
+    } catch (error) {
+      console.log('Error parsing JSON:', error);
+      console.log(data);
+    }
   }
 
   useEffect(() => {
-    getMoiveRequest();
-  }, [])
+    if (title) {
+      getMovieRequest(title);
+    }
+  }, [title])
 
   return (
     <MovieList movies={movies} />

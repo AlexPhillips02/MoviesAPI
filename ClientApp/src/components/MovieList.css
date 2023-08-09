@@ -1,0 +1,8 @@
+body {
+    background: red;
+}
+
+.movies {
+    display: flex;
+    padding: 10px;
+}

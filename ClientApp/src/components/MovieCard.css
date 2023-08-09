@@ -1,0 +1,38 @@
+/* MovieCard.css */
+
+/* Styles for the movie card container */
+.movie-card {
+    width: 500px;
+    height: 600px; /* Set a fixed height for all movie cards */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+  }
+  
+  /* Styles for the movie poster */
+  .movie-card img {
+    width: 300px;
+    height: 455px; /* Adjust the height of the movie poster */
+    border-radius: 4px;
+    object-fit: cover; /* Make sure the poster fills the container */
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for the movie title */
+  .movie-card .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Styles for the movie description */
+  .movie-card .text-justify {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  

@@ -1,10 +1,13 @@
 import React from 'react';
 import FetchMovies from './components/FetchMovies';
+import MovieSearch from './components/MovieSearch';
 
-const App = () => 
-{
+const App = () => {
   return (
-    <FetchMovies/>
+    <div>
+      <MovieSearch/>
+      <FetchMovies/>
+    </div>
   )
 }
 
